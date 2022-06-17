@@ -1,3 +1,8 @@
+import React, { useContext } from "react";
+import { Box } from "@mui/system";
+import InboxOutlinedIcon from "@mui/icons-material/InboxOutlined";
+import MailOutlineOutlinedIcon from "@mui/icons-material/MailOutlineOutlined";
+import { UIContext } from "../../context/UI/UIContext";
 import {
   Divider,
   Drawer,
@@ -7,16 +12,15 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import { Box } from "@mui/system";
-import React from "react";
-import InboxOutlinedIcon from "@mui/icons-material/InboxOutlined";
-import MailOutlineOutlinedIcon from "@mui/icons-material/MailOutlineOutlined";
 
 const menuItems: string[] = ["Inbox", "Starred", "Send Email"];
 
 export const Sidebar = () => {
+  //Buscamos un contexto que necesitamos
+  const { sideMenuOpen, closeMenuSidebar } = useContext(UIContext);
+
   return (
-    <Drawer anchor="left" open onClose={() => console.log("Cerrando")}>
+    <Drawer anchor="left" open={sideMenuOpen} onClose={closeMenuSidebar}>
       <Box sx={{ width: 250 }}>
         <Box sx={{ padding: "5px 10px" }}>
           <Typography variant="h4">Open Jira</Typography>
