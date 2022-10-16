@@ -1,8 +1,21 @@
-import React from "react";
+import React, { FC, useContext, useMemo } from "react";
 import { List, Paper } from "@mui/material";
 import { EntryCard } from "../EntryCard";
+import { EntryStatus } from "../../interfaces";
+import { EntriesContext } from "../../context/entries/entriesContext";
 
-export const EntryList = () => {
+interface Props {
+  status: EntryStatus;
+}
+
+export const EntryList: FC<Props> = ({ status }) => {
+  const { entries } = useContext(EntriesContext);
+
+  const entriesByStatus = useMemo(
+    () => entries.filter((entry) => entry.status === status),
+    [entries]
+  );
+
   return (
     // TODO: aqui haremos drop
     <div>
@@ -16,7 +29,9 @@ export const EntryList = () => {
       >
         {/* TODO: cambiara cuando este haciendo drag o no */}
         <List sx={{ opacity: 1 }}>
-          <EntryCard />
+          {entriesByStatus.map((entry) => (
+            <EntryCard key={entry._id} entry={entry} />
+          ))}
         </List>
       </Paper>
     </div>
