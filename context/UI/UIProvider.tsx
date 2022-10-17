@@ -2,12 +2,16 @@ import { FC, useReducer } from "react";
 import { UIContext } from "./UIContext";
 import { UIReducer } from "./UIReducer";
 
+//Agregamos nuevos atributos en el interface para el UISTATE
 export interface UIState {
   sideMenuOpen: boolean;
+  isAddNewEntry: boolean;
 }
 
+//Inicializamos el estado
 const UI_INITIAL_STATE: UIState = {
   sideMenuOpen: false,
+  isAddNewEntry: false,
 };
 
 export const UIProvider: FC = ({ children }) => {
@@ -22,6 +26,10 @@ export const UIProvider: FC = ({ children }) => {
     dispatch({ type: "UI - Close Sidebar" });
   };
 
+  const setIsAddNewEntry = (isAddNewEntry: boolean) => {
+    dispatch({ type: "UI - Add Entry", payload: isAddNewEntry });
+  };
+
   return (
     <UIContext.Provider
       value={{
@@ -29,6 +37,7 @@ export const UIProvider: FC = ({ children }) => {
         //Methods
         openMenuSidebar,
         closeMenuSidebar,
+        setIsAddNewEntry,
       }}
     >
       {children}
