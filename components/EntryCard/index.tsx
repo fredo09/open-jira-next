@@ -1,5 +1,5 @@
 import React, { FC, DragEvent, useContext } from "react";
-import { Entry } from "../../interfaces";
+import { Entry, EntryStatus } from "../../interfaces";
 import {
   Card,
   CardActionArea,
@@ -11,9 +11,10 @@ import { UIContext } from "../../context/UI/UIContext";
 
 interface Props {
   entry: Entry;
+  status: EntryStatus;
 }
 
-export const EntryCard: FC<Props> = ({ entry }) => {
+export const EntryCard: FC<Props> = ({ entry, status }) => {
   //Usando el contexto UI para hacer drag en las cards
   const { setIsDraggingStart, setIsDraggingEnd } = useContext(UIContext);
 
@@ -42,7 +43,20 @@ export const EntryCard: FC<Props> = ({ entry }) => {
       >
         <CardActionArea>
           <CardContent>
-            <Typography sx={{ whiteSpace: "pre-line" }} component="div">
+            <Typography
+              sx={{ fontSize: 14 }}
+              color="text.secondary"
+              gutterBottom
+            >
+              Titulo Card
+            </Typography>
+            <Typography
+              sx={{
+                whiteSpace: "pre-line",
+                textDecoration: status === "finished" ? "line-through" : "",
+              }}
+              component="div"
+            >
               {entry.description}
             </Typography>
           </CardContent>
