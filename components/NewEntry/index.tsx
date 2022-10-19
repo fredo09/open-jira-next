@@ -1,9 +1,9 @@
 import React, { ChangeEvent, useState, useContext } from "react";
 import { Box, Button, TextField } from "@mui/material";
-import SaveIcon from "@mui/icons-material/Save";
-import AddBoxIcon from "@mui/icons-material/AddBox";
 import { EntriesContext } from "../../context/entries/entriesContext";
 import { UIContext } from "../../context/UI/UIContext";
+import SaveIcon from "@mui/icons-material/Save";
+import AddBoxIcon from "@mui/icons-material/AddBox";
 
 export const NewEntry = () => {
   const { addNewEntry } = useContext(EntriesContext);

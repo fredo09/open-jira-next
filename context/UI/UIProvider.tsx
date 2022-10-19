@@ -6,12 +6,14 @@ import { UIReducer } from "./UIReducer";
 export interface UIState {
   sideMenuOpen: boolean;
   isAddNewEntry: boolean;
+  isDragging: boolean;
 }
 
 //Inicializamos el estado
 const UI_INITIAL_STATE: UIState = {
   sideMenuOpen: false,
   isAddNewEntry: false,
+  isDragging: false,
 };
 
 export const UIProvider: FC = ({ children }) => {
@@ -30,6 +32,14 @@ export const UIProvider: FC = ({ children }) => {
     dispatch({ type: "UI - Add Entry", payload: isAddNewEntry });
   };
 
+  const setIsDraggingStart = () => {
+    dispatch({ type: "UI - isDraggingStart" });
+  };
+
+  const setIsDraggingEnd = () => {
+    dispatch({ type: "UI - isDraggingEnd" });
+  };
+
   return (
     <UIContext.Provider
       value={{
@@ -38,6 +48,8 @@ export const UIProvider: FC = ({ children }) => {
         openMenuSidebar,
         closeMenuSidebar,
         setIsAddNewEntry,
+        setIsDraggingStart,
+        setIsDraggingEnd,
       }}
     >
       {children}
