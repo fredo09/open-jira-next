@@ -13,7 +13,7 @@ const mongooseConnection = {
 
 export const connectMongo = async () => {
   if (mongooseConnection.isConnected) {
-    console.log("Conexion establecida");
+    console.log("Conexion ya establecida");
     return;
   }
 
@@ -31,12 +31,13 @@ export const connectMongo = async () => {
     await mongoose.disconnect();
   }
 
-  await mongoose.connect("...");
+  await mongoose.connect(process.env.MONGO_URL || '')
   mongooseConnection.isConnected = COMMONS_SERVE.STATUS_MONGOO_CONNECTED;
+  console.log(`Se ha conectado a mongo: ${process.env.MONGO_URL}`);
 };
 
 export const disconnect = async () => {
-  if (mongooseConnection.isConnected !== COMMONS_SERVE.STATUS_MONGOO_CONNECTED)
+  if (mongooseConnection.isConnected === COMMONS_SERVE.STATUS_MONGOO_CONNECTED)
     return;
 
   await mongoose.disconnect();

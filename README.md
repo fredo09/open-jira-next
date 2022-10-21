@@ -8,3 +8,9 @@
 ```
     docker-compose up -d
 ```
+
+# MONGO URL DESARROLLO
+
+```
+    http://localhost:27017  
+```
