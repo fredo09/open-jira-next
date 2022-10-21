@@ -37,7 +37,6 @@ export const EntryList: FC<Props> = ({ status }) => {
   };
 
   return (
-    // TODO: aqui haremos drop
     <div
       onDrop={onDropEntry}
       onDragOver={allowDrop}
@@ -51,7 +50,6 @@ export const EntryList: FC<Props> = ({ status }) => {
           padding: "1px 5px",
         }}
       >
-        {/* TODO: cambiara cuando este haciendo drag o no */}
         <List sx={{ opacity: isDragging ? 0.2 : 1, transition: "all .3s" }}>
           {entriesByStatus.map((entry) => (
             <EntryCard key={entry._id} entry={entry} status={status} />
