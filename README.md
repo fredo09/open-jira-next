@@ -12,5 +12,13 @@
 # MONGO URL DESARROLLO
 
 ```
-    http://localhost:27017  
+    mongodb://localhost:27017
+```
+
+# Llenar la base de datos con información de prueba
+
+Entrar al api:
+
+```
+    http://localhost/api/seed
 ```
