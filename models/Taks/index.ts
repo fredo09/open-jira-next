@@ -6,7 +6,7 @@ import mongoose, { Schema, Model } from "mongoose";
 import { Entry } from "../../interfaces";
 
 //Interface para el schema y extendemos de las propiedades ya creadas del interface 'Entry'
-interface IModelEntry extends Entry {}
+export interface IModelEntry extends Entry {}
 
 const entrySchema = new Schema({
   description: { type: String, required: true },
